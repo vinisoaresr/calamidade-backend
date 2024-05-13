@@ -1,4 +1,4 @@
-# NestJS REST API boilerplate 🇺🇦
+# NestJS REST API boilerplate
 
 ![github action status](https://github.com/alexanderbraga/nestjs-boilerplate/actions/workflows/docker-e2e.yml/badge.svg)
 
