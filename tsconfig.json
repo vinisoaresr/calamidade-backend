@@ -1,21 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
-    "experimentalDecorators": true,
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
     "emitDecoratorMetadata": true,
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "typeRoots": [
-      "./src/api/@types"
-    ],
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
     "sourceMap": true,
-    "outDir": "./build",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": false,
-    "strictNullChecks": true,
-    "noUnusedLocals": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
-  },
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true
+  }
 }
