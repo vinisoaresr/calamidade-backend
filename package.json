@@ -1,0 +1,52 @@
+{
+  "name": "sample-api-fluterando",
+  "version": "1.0.0",
+  "description": "sample",
+  "author": "Obi.Tec",
+  "license": "ISC",
+  "scripts": {
+    "lint": "eslint src/** --no-error-on-unmatched-pattern",
+    "lintfix": "eslint src/** --fix",
+    "test": "vitest --config ./tests/vitest.config.ts",
+    "coverage": "vitest --config ./tests/vitest.config.ts run --coverage",
+    "dev": "sls offline --reloadHandler ",
+    "deploy": "sls deploy --verbose",
+    "debug": "node --inspect node_modules/serverless/bin/serverless offline --noTimeout --reloadHandler"
+  },
+  "dependencies": {
+    "@obi-tec/common-libs": "^1.0.3",
+    "@obi-tec/express-response-models": "^1.0.4",
+    "@obi-tec/logger-console": "^1.1.1",
+    "@prisma/client": "^5.2.0",
+    "accesscontrol": "^2.2.1",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "multer": "^1.4.5-lts.1",
+    "reflect-metadata": "^0.1.13",
+    "serverless-http": "^2.7.0",
+    "ts-node": "^10.9.1",
+    "tsyringe": "^4.7.0",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@aws-sdk/types": "^3.289.0",
+    "@types/express": "^4.17.15",
+    "@types/node": "^18.14.6",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "@vitest/coverage-c8": "^0.30.1",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.38.0",
+    "prisma": "^5.2.0",
+    "serverless": "^3.7.8",
+    "serverless-offline": "^12.0.4",
+    "serverless-plugin-ifelse": "^1.0.7",
+    "serverless-plugin-typescript": "^2.1.4",
+    "serverless-prune-plugin": "^2.0.1",
+    "supertest": "^6.2.2",
+    "typescript": "^4.9.5",
+    "vitest": "^0.30.1",
+    "vsts-coverage-styles": "^1.0.9"
+  }
+}

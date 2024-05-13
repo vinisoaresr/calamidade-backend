@@ -1,0 +1,81 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  branches:
+    include:
+    - master
+    - develop
+    - release/*
+  paths:
+    exclude:
+    - .vscode/*
+    - scripts/*
+    - README.md
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- group: Obi Help Database - DEV
+
+steps:
+- task: NodeTool@0
+  displayName: 'Install Node.js'
+  inputs:
+    versionSpec: '18.x'
+
+- script: npm install
+  displayName: 'NPM Install'
+
+- script: npm run lint
+  displayName: 'Lint'
+
+- script: npm run prisma:generate
+  displayName: 'Setup prisma'
+
+- script: npm run coverage
+  displayName: 'Tests'
+
+# - script: npm run posttest
+#   displayName: 'Posttests'
+
+- task: CopyFiles@2
+  condition: succeeded()
+  displayName: 'Generate Build Artifacts'
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: |
+      **/*
+      !.devops/*
+      !.vscode/*
+      !.git/**/*
+      !coverage/**/*
+      !node_modules/**/*
+      !.gitignore
+      !.eslintrc.json
+      !azure-pipelines.yml
+      !junit.xml
+      !README.md
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  condition: succeeded()
+  displayName: 'Publish Artifacts'
+
+# - task: PublishCodeCoverageResults@1
+#   condition: succeededOrFailed()
+#   displayName: "Publish code coverage"
+#   inputs:
+#     codeCoverageTool: Cobertura
+#     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/cobertura-coverage.xml'
+#     reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+#     failIfCoverageEmpty: false
+
+# - task: PublishTestResults@2
+#   condition: succeededOrFailed()
+#   inputs:
+#     testRunner: JUnit
+#     testResultsFiles: 'junit.xml'
