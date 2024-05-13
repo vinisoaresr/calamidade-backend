@@ -5,10 +5,12 @@ import { IncomingHttpHeaders } from 'http';
 import { IHealthRepository } from './IHealthRepository';
 import {
   // Inject model
+  HealthDb,
   HealthNetwork
 } from '../../models/health';
 
 // Inject dependencies
+import { ConnectionDB } from '../../services/database';
 
 export class HealthRepository implements IHealthRepository {
   async checkNetwork(headers: IncomingHttpHeaders): Promise<HealthNetwork> {
@@ -30,4 +32,16 @@ export class HealthRepository implements IHealthRepository {
   }
 
   // Inject methods
+  async checkDb(): Promise<HealthDb> {
+    const result = await ConnectionDB.$queryRaw`SELECT NOW() AS time;` as any[];
+    return {
+      build   : process.env.HEALTH_BUILD || 'not-set',
+      status  : 'OK',
+      release : process.env.HEALTH_RELEASE || 'not-set',
+      service : 'db',
+
+      date: result[0].time.toString()
+    };
+  }
+
 }

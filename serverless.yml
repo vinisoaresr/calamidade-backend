@@ -39,6 +39,8 @@ provider:
     HEALTH_RELEASE: ${env:HEALTH_RELEASE}
 
     # Inject environment
+    DATABASE_URL: ${env:DATABASE_URL}
+
 
   # Inject provider
 

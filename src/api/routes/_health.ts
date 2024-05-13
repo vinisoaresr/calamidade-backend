@@ -7,6 +7,7 @@ import * as healthRetrieveController from '../controllers/health/retrieve.contro
 
 // routes
 // health/server
+router.get('/db', healthRetrieveController.dbCheck);
 router.get('/server', healthRetrieveController.serverCheck);
 
 export default router;

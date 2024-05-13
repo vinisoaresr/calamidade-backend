@@ -5,6 +5,12 @@
   "author": "Obi.Tec",
   "license": "ISC",
   "scripts": {
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:generate": "prisma generate",
+    "prisma:seed": "prisma db seed",
+    "prisma:studio": "prisma studio",
+    "build": "tsc",
     "lint": "eslint src/** --no-error-on-unmatched-pattern",
     "lintfix": "eslint src/** --fix",
     "test": "vitest --config ./tests/vitest.config.ts",
@@ -13,6 +19,11 @@
     "deploy": "sls deploy --verbose",
     "debug": "node --inspect node_modules/serverless/bin/serverless offline --noTimeout --reloadHandler"
   },
+  "prisma": {
+    "schema": "src/services/database/prisma/schema.prisma",
+    "seed": "ts-node --transpile-only src/services/database/prisma/seed.ts"
+  },
+
   "dependencies": {
     "@obi-tec/common-libs": "^1.0.3",
     "@obi-tec/express-response-models": "^1.0.4",

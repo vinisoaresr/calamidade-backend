@@ -16,3 +16,6 @@ export type HealthNetwork = {
 } & Health;
 
 // Inject model
+export type HealthDb = {
+  date : string;
+} & Health;
